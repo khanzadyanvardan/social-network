@@ -8,7 +8,8 @@ export default function (sequelize, DataTypes, models) {
         name: DataTypes.STRING,
         surname: DataTypes.STRING,
         username: {type: DataTypes.STRING, allowNull: false},
-        password: {type: DataTypes.STRING, allowNull: false}
+        password: {type: DataTypes.STRING, allowNull: false},
+        privacy: {type: DataTypes.BOOLEAN, defaultValue: false}
     }, { tableName: "users", timestamps: false, 
         defaultScope: {
         attributes: { exclude: ['password']}},

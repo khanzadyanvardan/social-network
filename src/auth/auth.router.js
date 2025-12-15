@@ -28,6 +28,11 @@ authRouter.use("/user", userRouter);
 userRouter.use(authMiddlewares)
 
 userRouter.get("/", authController.me.bind(authController))
+
 userRouter.patch("/username",
      userValidator.bind(null, authService),
      authController.username.bind(authController))
+
+userRouter.patch("/privacy",
+    authController.privacy.bind(authController)
+)

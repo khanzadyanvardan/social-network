@@ -52,4 +52,12 @@ export class AuthService {
        return user
     }
 
+    async setPrivacy(id){
+        const user =  await this.findById(id);
+        user.privacy = !user.privacy
+        await user.save()
+        return user.privacy
+    }
+
+
 }

@@ -39,7 +39,7 @@ export class AuthController{
         const {id} = req.user
         try{
             const result = await this.service.setUsername(id, username, password)
-            res.status(200).send({ok: true, user: result})
+            res.status(200).send({ok: true})
         }catch(err){
             if(err.message === "MATCH_LOGIN"){
                 res.status(400).send({ok:false, message:"Username already exists"})
@@ -50,6 +50,20 @@ export class AuthController{
             if(err.message === "NOT_FOUND"){
                 return res.status(404).send({ok:false, message:"User not found"});
             }
+            return res.status(500).send({ ok: false, message: "Server error" });
+        }
+    }
+
+
+    async privacy(req, res){
+        try{
+            const privacy = await this.service.setPrivacy(req.user.id)
+            res.status(200).send({ok: true, privacy})
+        }catch(err){
+            if(err.message === "NOT_FOUND"){
+                return res.status(404).send({ok:false, message:"User not found"});
+            }
+            return res.status(500).send({ ok: false, message: "Server error" });
         }
     }
 }
