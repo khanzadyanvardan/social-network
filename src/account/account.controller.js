@@ -31,23 +31,6 @@ export class AccountController{
         }
     }
 
-
-    // async privacy(req, res){
-    //     try{
-    //         console.log(1111111)
-    //         const privacy = await this.service.setPrivacy(req.user.id)
-    //         res.status(200).send({ok: true, privacy})
-    //     }catch(err){
-    //         if(err.message === "NOT_FOUND"){
-    //             return res.status(404).send({ok:false, message:"User not found"});
-    //         }
-    //         if(err.message === "NOT_MATCHED"){
-    //             return res.status(401).send({ok:false, message:"Invalid password"});
-    //         }
-    //         return res.status(500).send({ ok: false, message: "Server error" });
-    //     }
-    // }
-
     async followers(req, res){
         try{
             const followers = await this.service.getFollowers(req.user.id)

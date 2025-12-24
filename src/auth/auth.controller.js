@@ -70,6 +70,12 @@ export class AuthController{
         }
     }
 
+
+
+
+
+
+    
     // async posts(req, res){
     //     try{
     //         const posts = await this.service.getPosts(req.user.id)

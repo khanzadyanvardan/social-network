@@ -3,7 +3,6 @@ export class AccountService{
     constructor(userModel, followModel){
         this.userModel = userModel
         this.followModel = followModel
-        // this.postModel = postModel
     }
 
     async searcByName(name){

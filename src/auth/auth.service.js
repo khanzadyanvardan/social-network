@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken"
 export class AuthService {
     constructor(userModel) {
         this.userModel = userModel
-        // this.followModel = followModel
-        // this.postModel = postModel
     }
 
     async findByLogin(username, scope=false) {
