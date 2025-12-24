@@ -21,7 +21,8 @@ export default function (sequelize, DataTypes, models) {
     })
 
 
-    //
+    // User.hasMany(models.Follow, { as: "followers", foreignKey: "following_id" });
+    // User.hasMany(models.Follow, { as: "followings", foreignKey: "follower_id" });
    // User.hasMany(models.Product, {})
     return User
 }

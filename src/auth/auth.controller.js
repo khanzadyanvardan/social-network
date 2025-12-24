@@ -45,7 +45,7 @@ export class AuthController{
                 res.status(400).send({ok:false, message:"Username already exists"})
             }
             if(err.message === "NOT_MATCHED"){
-                return res.status(400).send({ok:false, message:"Invalid password"});
+                return res.status(401).send({ok:false, message:"Invalid password"});
             }
             if(err.message === "NOT_FOUND"){
                 return res.status(404).send({ok:false, message:"User not found"});
@@ -63,7 +63,27 @@ export class AuthController{
             if(err.message === "NOT_FOUND"){
                 return res.status(404).send({ok:false, message:"User not found"});
             }
+            if(err.message === "NOT_MATCHED"){
+                return res.status(401).send({ok:false, message:"Invalid password"});
+            }
             return res.status(500).send({ ok: false, message: "Server error" });
         }
     }
+
+    // async posts(req, res){
+    //     try{
+    //         const posts = await this.service.getPosts(req.user.id)
+    //         res.status(200).send({ok: true, posts})
+    //     }catch(err){
+    //         console.error("FOLLOWERS ERROR:", err)
+    //         if(err.message === "NOT_FOUND"){
+    //             return res.status(404).send({ok:false, message:"Not found"});
+    //         }
+    //         if(err.message === "NOT_MATCHED"){
+    //             return res.status(401).send({ok:false, message:"Invalid password"});
+    //         }
+    //         return res.status(500).send({ ok: false, message: "Server error" });
+    //     }
+    // }
+
 }

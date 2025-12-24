@@ -4,11 +4,13 @@ import jwt from "jsonwebtoken"
 export class AuthService {
     constructor(userModel) {
         this.userModel = userModel
+        // this.followModel = followModel
+        // this.postModel = postModel
     }
 
-    async findByLogin(login, scope=false) {
-        if(scope) return  await this.userModel.scope('withPassword').findOne({ where: { username: login } })
-            else return await this.userModel.findOne({ where: { username: login } })
+    async findByLogin(username, scope=false) {
+        if(scope) return  await this.userModel.scope('withPassword').findOne({ where: { username } })
+            else return await this.userModel.findOne({ where: { username } })
     }
     
     async createUser(user) {
@@ -54,10 +56,26 @@ export class AuthService {
 
     async setPrivacy(id){
         const user =  await this.findById(id);
+        console.log(user)
         user.privacy = !user.privacy
         await user.save()
         return user.privacy
     }
 
 
+    // async getPosts(id){
+    //     const posts = await this.postModel.findAll({
+    //         where: { user_id: id },
+    //         // include: [
+    //         //     {
+    //         //         model: this.userModel,
+    //         //         as: "user",
+    //         //         attributes: ["id", "username"]
+    //         //     }
+    //         // ]
+    //     });
+    
+    //     if (!posts) throw new Error("NOT_FOUND");
+    //     return posts
+    // }
 }
